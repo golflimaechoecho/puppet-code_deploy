@@ -1,11 +1,10 @@
 {
   "description": "Run Puppet code deploy",
-  "input_method": "environment",
   "supports_noop": false,
   "parameters": {
-    "environment": {
+    "environments": {
       "description": "Specify the code environment that you wish to deploy",
-      "type": "String[1]"
+      "type": "Pattern[/^([A-Za-z0-9._-]+,?)+$/]"
     }
   }
 }

@@ -27,7 +27,20 @@ def puppet_code_deploy(environment)
 end
 
 results = {}
-environment = ENV['PT_environment']
 
+params = JSON.parse(STDIN.read)
+environments = params['environments'].split(',')
+
+environments.each do |environment|
+
+ results[environment] = {}
+
+  output = puppet_code_deploy(environment)
+  results[environment][:result] = if output[:exit_code].zero?
+                              "Successfully deployed the #{environment} environment"
+                            else
+                              output
+                            end
+end
 
 puts results.to_json
