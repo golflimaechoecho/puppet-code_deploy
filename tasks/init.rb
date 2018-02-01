@@ -36,11 +36,12 @@ environments.each do |environment|
  results[environment] = {}
 
   output = puppet_code_deploy(environment)
+  json_status = JSON.parse(output)[:status]
+  puts json_status
   results[environment][:result] = if output[:exit_code].zero?
                               "Successfully deployed the #{environment} environment"
                             else
                               output
                             end
 end
-
 puts results.to_json
