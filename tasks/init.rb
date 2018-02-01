@@ -18,7 +18,7 @@ unless Puppet[:server] == Puppet[:certname]
 end
 
 def puppet_code_deploy(environment)
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'code', 'deploy', environment)
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'code', 'deploy', '--wait', environment)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
