@@ -39,7 +39,6 @@ environments.each do |environment|
   outputsplit = output[:stdout].split('.') #creates an array, with two hashes. first, is a string "Found x enviromnets". second is JSON
   outputjson = JSON.parse(outputsplit[1])
   json_status = outputjson[0]['status'] 
-  puts json_status
   
   results[environment][:result] = if json_status == 'complete'
                               "Successfully deployed the #{environment} environment"
