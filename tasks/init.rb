@@ -27,11 +27,11 @@ def puppet_code_deploy(environment)
 end
 
 def token_exists?
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-access', 'show')
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-code', 'deploy', 'status')
   puts "Standard Out: #{stdout}"
   puts "Standard Error: #{stderr}"
   puts `whoami`
-  if stderr.include? "No authentication token exists"
+  if stderr.include? "Error: Code Manager requires a token"
     puts "false"
     false
   else
