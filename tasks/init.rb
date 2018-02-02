@@ -40,12 +40,11 @@ environments.each do |environment|
   outputeol = output[:stdout][outputindex..-1]
   outputjson = JSON.parse(outputeol) 
   json_status = outputjson[0]['status'] 
-  outputmsg = outputjson[0]['error']['msg']
 
   results[environment][:result] = if json_status == 'complete'
                               "Successfully deployed the #{environment} environment"
                             else
-                              "#{outputmsg} "
+                              "#{outputjson[0]['error']['msg']} "
                             end
 end
 puts results.to_json
