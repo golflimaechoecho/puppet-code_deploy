@@ -28,14 +28,9 @@ end
 
 def token_exists?
   stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-code', 'deploy', 'status')
-  puts "Standard Out: #{stdout}"
-  puts "Standard Error: #{stderr}"
-  puts `whoami`
   if stderr.include? "Error: Code Manager requires a token"
-    puts "false"
     false
   else
-    puts "true"
     true
   end
 end
@@ -49,11 +44,8 @@ if params['environments'] == 'all' || params['environments'] == '--all'
   exit 1
 end
 
-# do this unless the token exists
-
 unless token_exists?
-  #puts "Error: Code Manager requires a token, please use `puppet access login` to generate a token"
-  puts "Code Manager requires a token, please use `puppet access login` to generate a token"
+  puts "Error: Code Manager requires a token, please use `puppet access login` to generate a token"
   exit 1
 end
 
