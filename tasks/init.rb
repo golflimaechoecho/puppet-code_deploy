@@ -30,7 +30,7 @@ results = {}
 
 params = JSON.parse(STDIN.read)
 
-if params['environments'] == 'all' || '--all'
+if params['environments'] == 'all' || params['environments'] == '--all'
   puts 'This task does not allow you to deploy ALL environments at one time. Please use a comma separated list.'
   exit 1
 end
@@ -55,5 +55,4 @@ environments.each do |environment|
 end
 puts results.to_json
 
-# Support all case? "Does not support deploying all"
-# 
+# Puppet access token
