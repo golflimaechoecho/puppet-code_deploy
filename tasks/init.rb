@@ -26,6 +26,18 @@ def puppet_code_deploy(environment)
   }
 end
 
+def token_exists?
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-access', 'show')
+  puts "#{stdout}"
+  puts "#{stderr}"
+  puts "#{status}"
+  if stdout.include? "No authentication token exists"
+    false
+  else
+    true
+  end
+end
+
 results = {}
 
 params = JSON.parse(STDIN.read)
@@ -33,18 +45,6 @@ params = JSON.parse(STDIN.read)
 if params['environments'] == 'all' || params['environments'] == '--all'
   puts 'This task does not allow you to deploy ALL environments at one time. Please use a comma separated list.'
   exit 1
-end
-
-def token_exists?
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-access', 'show')
-  puts stdout
-  puts stderr
-  puts status
-  if stdout.include? "No authentication token exists"
-    false
-  else
-    true
-  end
 end
 
 # do this unless the token exists
