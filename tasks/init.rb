@@ -29,6 +29,12 @@ end
 results = {}
 
 params = JSON.parse(STDIN.read)
+
+if environments == 'all'
+  puts 'This task does not allow you to deploy ALL environments at one time. Please use a comma separated list.'
+  exit 1
+end
+
 environments = params['environments'].split(',')
 
 environments.each do |environment|
@@ -48,3 +54,6 @@ environments.each do |environment|
                             end
 end
 puts results.to_json
+
+# Support all case? "Does not support deploying all"
+# 
