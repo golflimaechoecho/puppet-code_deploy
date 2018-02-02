@@ -35,6 +35,25 @@ if params['environments'] == 'all' || params['environments'] == '--all'
   exit 1
 end
 
+def token_exists?
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-access', 'show')
+  puts stdout
+  puts stderr
+  puts status
+  if stdout.include? "No authentication token exists"
+    false
+  else
+    true
+  end
+end
+
+# do this unless the token exists
+
+unless token_exists
+  puts "Error: Code Manager requires a token, please use `puppet access login` to generate a token"
+  exit 1
+end
+
 environments = params['environments'].split(',')
 
 environments.each do |environment|
