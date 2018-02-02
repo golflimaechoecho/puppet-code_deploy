@@ -30,7 +30,7 @@ results = {}
 
 params = JSON.parse(STDIN.read)
 
-if params['environments'] == 'all'
+if params['environments'] == 'all' || '--all'
   puts 'This task does not allow you to deploy ALL environments at one time. Please use a comma separated list.'
   exit 1
 end
