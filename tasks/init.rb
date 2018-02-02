@@ -49,7 +49,7 @@ end
 
 # do this unless the token exists
 
-unless token_exists
+unless token_exists?
   puts "Error: Code Manager requires a token, please use `puppet access login` to generate a token"
   exit 1
 end
