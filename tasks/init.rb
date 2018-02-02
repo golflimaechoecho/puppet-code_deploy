@@ -28,9 +28,9 @@ end
 
 def token_exists?
   stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-access', 'show')
-  puts "#{stdout}"
-  puts "#{stderr}"
-  puts "#{status}"
+  puts "Standard Out: #{stdout}"
+  puts "Standard Error: #{stderr}"
+  puts "Status: #{status}"
   if stdout.include? "No authentication token exists"
     false
   else
