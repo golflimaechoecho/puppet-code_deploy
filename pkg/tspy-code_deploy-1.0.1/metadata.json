@@ -7,14 +7,15 @@
   "source": "https://github.com/tspeigner/puppet-code_deploy",
   "project_page": "https://github.com/tspeigner/puppet-code_deploy",
   "issues_url": "https://github.com/tspeigner/puppet-code_deploy/issues",
+  "dependencies": [
+  
+  ],
+  "data_provider": null,
   "requirements": [
     {
       "name": "puppet",
       "version_requirement": ">= 5.0.0 < 6.0.0"
     }
-  ],
-  "dependencies": [
-
   ],
   "operatingsystem_support": [
     {

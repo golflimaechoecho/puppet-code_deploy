@@ -4,7 +4,7 @@
   "parameters": {
     "environments": {
       "description": "Specify the code environment that you wish to deploy",
-      "type": "Pattern[/^([a-zA-Z0-9_]+,?)+$/]"
+      "type": "Pattern[/^([A-Za-z0-9._-]+,?)+$/]"
     }
   }
 }
