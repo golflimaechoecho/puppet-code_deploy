@@ -8,6 +8,7 @@
 #   * environment - A the desired environment code to be deployed.
 #
 require 'puppet'
+require 'puppetclassify'
 require 'open3'
 
 Puppet.initialize_settings
@@ -24,6 +25,18 @@ def puppet_code_deploy(environment)
     stderr: stderr.strip,
     exit_code: status.exitstatus
   }
+end
+
+def refresh_environment(environment)
+  auth_info = {
+    "ca_certificate_path" => `puppet config print localcacert`.strip,
+    "certificate_path"    => `puppet config print hostcert`.strip,
+    "private_key_path"    => `puppet config print hostprivkey`.strip,    
+    "read_timeout"        => 90
+  }
+  classifier_url = "https://#{Puppet[:server]}:4433/classifier-api"
+  puppetclassify = PuppetClassify.new(classifier_url, auth_info)
+  puppetclassify.update_classes.update  
 end
 
 def token_exists?
@@ -62,8 +75,9 @@ environments.each do |environment|
   output_json = JSON.parse(output_eol)
   json_status = output_json[0]['status']
 
+  refresh_environment(environment)
   results[environment][:result] = if json_status == 'complete'
-                                    "Successfully deployed the #{environment} environment"
+                                    "Successfully deployed the #{environment} environment. Puppet Classes refreshed."
                                   else
                                     "#{output_json[0]['error']['msg']} "
                                   end
