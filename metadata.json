@@ -1,18 +1,12 @@
 {
   "name": "tspy-code_deploy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Tommy Speigner",
   "summary": "A Puppet Task for Puppet Code Deployments",
   "license": "Apache-2.0",
   "source": "https://github.com/tspeigner/puppet-code_deploy",
   "project_page": "https://github.com/tspeigner/puppet-code_deploy",
   "issues_url": "https://github.com/tspeigner/puppet-code_deploy/issues",
-  "requirements": [
-    {
-      "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
-    }
-  ],
   "dependencies": [
 
   ],
@@ -36,6 +30,12 @@
       "operatingsystem": "Ubuntu"
     }
   ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 5.0.0 < 6.0.0"
+    }
+  ],
   "tags": [
     "code",
     "deploy",
@@ -43,5 +43,8 @@
     "code manager",
     "code deploy",
     "puppet code deploy"
-  ]
+  ],
+  "pdk-version": "1.4.1",
+  "template-url": "https://github.com/puppetlabs/pdk-templates",
+  "template-ref": "1.4.1-0-g52adbbb"
 }

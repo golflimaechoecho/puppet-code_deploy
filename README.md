@@ -2,7 +2,7 @@
 
 # Puppet Code Deploy
 
-This module adds a Task for running puppet code deploy <environment>.
+This module adds a Task for running puppet code deploy 'environment'.
 
 ## Requirements
 
