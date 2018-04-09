@@ -8,3 +8,6 @@
 ## [1.0.2] Added @maju6406 changes, refreshing the classes in the UI
 * The task now uses the puppetclassify gem to do the refresh. 
 https://github.com/tspeigner/puppet-code_deploy/pull/1/commits/1ab007a8456661dd27a3cd4ed9ca9fd89ba299a2
+
+## [1.0.3]
+* PDK Convert
