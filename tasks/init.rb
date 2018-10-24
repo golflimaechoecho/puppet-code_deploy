@@ -18,6 +18,15 @@ unless Puppet[:server] == Puppet[:certname]
   exit 1
 end
 
+def install_puppetclassify_gem
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet', 'resource', 'package', 'puppetclassify','ensure=present', 'provider=puppet_gem')
+  {
+    stdout: stdout.strip,
+    stderr: stderr.strip,
+    exit_code: status.exitstatus
+  }
+end
+
 def puppet_code_deploy(environment)
   stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet-code', 'deploy', '--wait', environment)
   {
@@ -48,6 +57,7 @@ def token_exists?
   end
 end
 
+install_puppetclassify_gem
 results = {}
 
 params = JSON.parse(STDIN.read)
