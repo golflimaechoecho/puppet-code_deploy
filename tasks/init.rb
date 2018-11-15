@@ -8,7 +8,7 @@
 #   * environment - A the desired environment code to be deployed.
 #
 require 'puppet'
-#require 'puppetclassify'
+require 'puppetclassify'
 require 'open3'
 
 Puppet.initialize_settings
