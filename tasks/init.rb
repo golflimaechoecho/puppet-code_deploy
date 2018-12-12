@@ -19,11 +19,11 @@ unless Puppet[:server] == Puppet[:certname]
 end
 
 def install_puppetclassify_gem
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet', 'resource', 'package', 'puppetclassify','ensure=present', 'provider=puppet_gem')
+  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/bin/puppet', 'resource', 'package', 'puppetclassify', 'ensure=present', 'provider=puppet_gem')
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
-    exit_code: status.exitstatus
+    exit_code: status.exitstatus,
   }
 end
 
@@ -32,20 +32,20 @@ def puppet_code_deploy(environment)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
-    exit_code: status.exitstatus
+    exit_code: status.exitstatus,
   }
 end
 
 def refresh_environment(environment)
   auth_info = {
-    "ca_certificate_path" => `/opt/puppetlabs/bin/puppet config print localcacert`.strip,
-    "certificate_path"    => `/opt/puppetlabs/bin/puppet config print hostcert`.strip,
-    "private_key_path"    => `/opt/puppetlabs/bin/puppet config print hostprivkey`.strip,
-    "read_timeout"        => 90
+    'ca_certificate_path' => `/opt/puppetlabs/bin/puppet config print localcacert`.strip,
+    'certificate_path'    => `/opt/puppetlabs/bin/puppet config print hostcert`.strip,
+    'private_key_path'    => `/opt/puppetlabs/bin/puppet config print hostprivkey`.strip,
+    'read_timeout'        => 90,
   }
   classifier_url = "https://#{Puppet[:server]}:4433/classifier-api"
   puppetclassify = PuppetClassify.new(classifier_url, auth_info)
-  puppetclassify.update_classes.update  
+  puppetclassify.update_classes.update
 end
 
 def token_exists?
