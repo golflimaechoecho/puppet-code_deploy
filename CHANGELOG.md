@@ -11,3 +11,7 @@ https://github.com/tspeigner/puppet-code_deploy/pull/1/commits/1ab007a8456661dd2
 
 ## [1.0.3]
 * PDK Convert
+
+## [1.0.4]
+* Fully qualify `puppet` command for console refresh #3 - PR
+https://github.com/tspeigner/puppet-code_deploy/pull/3
