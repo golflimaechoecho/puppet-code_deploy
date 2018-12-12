@@ -38,9 +38,9 @@ end
 
 def refresh_environment(environment)
   auth_info = {
-    "ca_certificate_path" => `puppet config print localcacert`.strip,
-    "certificate_path"    => `puppet config print hostcert`.strip,
-    "private_key_path"    => `puppet config print hostprivkey`.strip,    
+    "ca_certificate_path" => `/opt/puppetlabs/bin/puppet config print localcacert`.strip,
+    "certificate_path"    => `/opt/puppetlabs/bin/puppet config print hostcert`.strip,
+    "private_key_path"    => `/opt/puppetlabs/bin/puppet config print hostprivkey`.strip,
     "read_timeout"        => 90
   }
   classifier_url = "https://#{Puppet[:server]}:4433/classifier-api"
